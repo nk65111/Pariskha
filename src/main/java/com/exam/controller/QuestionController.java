@@ -2,8 +2,8 @@ package com.exam.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +98,12 @@ public class QuestionController {
         Double singleQuestionMark= Double.valueOf(questions.get(0).getQuiz().getMaxMarks())/Integer.parseInt(questions.get(0).getQuiz().getNumberOfQuestion());
         marksGot+=singleQuestionMark*correctAns;
 
-        Map<String,Object> map= Map.of("attempted",attempted,"correctAns",correctAns,"marksGot",marksGot);
+        HashMap<String,Object> map= new HashMap<>();
+        map.put("attempted",attempted);
+        map.put("correctAns",correctAns);
+        map.put("marksGot",marksGot);
+     
+
         return  ResponseEntity.ok(map);
     }
 }
